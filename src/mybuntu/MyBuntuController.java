@@ -5,11 +5,16 @@
 package mybuntu;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+
+import mybuntu.model.MysqlDb;
 
 /**
  *
@@ -23,6 +28,9 @@ public class MyBuntuController implements Initializable
     
     @FXML
     private Label mylabel;
+    
+    @FXML
+    private ComboBox dbList;
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -35,6 +43,15 @@ public class MyBuntuController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+       try { 
+       MysqlDb mysqldb = new MysqlDb();
+       Connection conn = mysqldb.getConnection("root", "root");
+       
+       dbList.getItems().clear();
+       dbList.getItems().addAll( mysqldb.getDbList(conn) );
+       }  
+       catch (SQLException | InstantiationException | ClassNotFoundException | IllegalAccessException e) {
+            e.printStackTrace();
+       }
     }
 }
