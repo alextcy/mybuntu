@@ -34,7 +34,7 @@
     </VBox>
     <SplitPane dividerPositions="0.19863013698630136" focusTraversable="true" prefHeight="575.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
       <items>
-        <AnchorPane maxWidth="300.0" minHeight="0.0" minWidth="200.0" prefHeight="573.0" prefWidth="200.0">
+        <AnchorPane maxWidth="400.0" minHeight="0.0" minWidth="200.0" prefHeight="573.0" prefWidth="200.0">
           <children>
             <BorderPane prefHeight="573.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <center>
@@ -43,7 +43,7 @@
               <top>
                 <ToolBar>
                   <items>
-                    <ComboBox fx:id="dbList" prefWidth="175.0" promptText="Select DB">
+                    <ComboBox fx:id="dbList" onAction="#onChangeDbList" prefWidth="175.0" promptText="Select DB">
                       <items>
                         <FXCollections fx:factory="observableArrayList">
                           <String fx:value="Item 1" />

@@ -4,6 +4,7 @@
  */
 package mybuntu.model;
 
+import com.sun.org.apache.xpath.internal.functions.FuncBoolean;
 import java.sql.*;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
@@ -40,6 +41,24 @@ public class MysqlDb
         }
         
         return dbnames;
+    }        
+    
+    
+    public ObservableList getTableList(String dbname, Connection conn) throws SQLException
+    {
+        ObservableList<String> dbtables = FXCollections.observableArrayList();
+        
+        DatabaseMetaData meta = conn.getMetaData();
+        
+        String[] tableTypes = {"TABLE"};
+        ResultSet tables = meta.getTables(dbname, null, null, tableTypes);
+        
+        while (tables.next()) {
+            String tableName = tables.getString("TABLE_NAME");
+            dbtables.add(tableName);
+        }
+        
+        return dbtables;
     }        
            
     
